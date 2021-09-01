@@ -1,0 +1,9 @@
+name: project
+tmux_detached: false
+on_project_stop: make down
+windows:
+  - editor:
+      panes:
+        - up: make up
+        - frontend: make attach-angular
+        - blank:

@@ -1,0 +1,25 @@
+version: "2.4"
+
+services:
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./_docker_volumes/postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.0-alpine
+    volumes:
+      - ./_docker_volumes/redis:/data
+
+  django:
+    depends_on:
+      - postgres
+      - redis
+
+#  celery-worker:
+#    command: sh -c "pip install -r requirements.txt && celery -A main worker -l INFO"
+#
+#  celery-beat:
+#    command: sh -c "pip install -r requirements.txt && celery -A main beat -l INFO --pidfile="

@@ -1,0 +1,40 @@
+version: "2.4"
+
+services:
+  postgres:
+    environment:
+      - POSTGRES_DB=django_template_db
+      - POSTGRES_PASSWORD=Test123!
+
+  django:
+    build:
+      context: ./django
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./django:/opt/app
+    command: tail -f /dev/null
+    env_file:
+      - .env
+
+#  celery-worker:
+#    build:
+#      context: ./django
+#    volumes:
+#      - ./django:/opt/app
+#    env_file:
+#      - .env
+#
+#  celery-beat:
+#    build:
+#      context: ./django
+#    volumes:
+#      - ./django:/opt/app
+#    env_file:
+#      - .env
+#
+#  mail:
+#    image: mailhog/mailhog
+#    ports:
+#      - "1025:1025" # smtp server
+#      - "1080:8025" # web ui
