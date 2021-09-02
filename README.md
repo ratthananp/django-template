@@ -34,7 +34,6 @@ tmuxinator .
 
 ```bash
 make lint-django
-make lint-angular
 ```
 
 ### Testing
